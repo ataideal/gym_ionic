@@ -1,25 +1,23 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view>
   <ion-content>
+
+    <h4 style="font-family: sans-serif; font-style: italic bold; text-align: center" class="gray"> MyGYM </h4>
+
     <form ng-submit="doLogin()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Username</span>
+          <span class="input-label">Usuário</span>
           <input type="text" ng-model="loginData.username">
         </label>
         <label class="item item-input">
-          <span class="input-label">Password</span>
+          <span class="input-label">Senha</span>
           <input type="password" ng-model="loginData.password">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-positive" type="submit">Entrar</button>
+          <button class="button button-block button-positive" type="button" ng-click="novo()">Cadastrar</button>
         </label>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-view>

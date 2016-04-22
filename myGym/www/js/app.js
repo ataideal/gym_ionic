@@ -22,8 +22,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.views.transition('ios');
+    $ionicConfigProvider.tabs.style('standard').position('bottom');
+    $ionicConfigProvider.navBar.alignTitle('center').positionPrimaryButtons('left');
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'AppCtrl'
+  })
 
   .state('app', {
     url: '/app',
@@ -60,6 +72,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.novo_exercicio', {
+    url: '/exercises/new',
+    views: {
+      'menuContent': {
+          templateUrl: 'templates/novo_exercicio.html',
+          controller: 'ExercisesCtrl'
+      }
+    }
+  })
+
+  .state('app.casdastro_usuario', {
+    url: '/user/new',
+    views: {
+      'menuContent': {
+          templateUrl: 'templates/casdastro_usuario.html',
+          controller: 'ExercisesCtrl'
+      }
+    }
+  })
+
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
@@ -70,5 +102,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/exercises');
+  $urlRouterProvider.otherwise('/login');
 });

@@ -1,0 +1,22 @@
+<ion-view view-title="Novo Exercício">
+  <ion-content>
+   <form ng-submit="cadastrarExercicio()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nome</span>
+          <input type="text" ng-model="exercicio.nome">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Tipo</span>
+          <input type="text" ng-model="exercicio.tipo">
+        </label>
+        <!--
+            Não sei que porra'e para fazer com dias e repetições, entao implemente ai
+        -->
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Salvar</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

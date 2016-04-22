@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -24,6 +24,10 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   };
 
+  $scope.novo = function(){
+    $state.go("app.cadastro_usuario");
+  };
+
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
@@ -36,12 +40,12 @@ angular.module('starter.controllers', [])
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
-      $scope.closeLogin();
+      $state.go("app.exercises");
     }, 1000);
   };
 })
 
-.controller('ExercisesCtrl', function($scope) {
+.controller('ExercisesCtrl', function($scope, $ionicPopup, $state) {
   $scope.exercises = [
     { title: 'Exercicio 1', id: 1, isChecked: false },
     { title: 'Exercicio 2', id: 2, isChecked: false },
@@ -52,11 +56,25 @@ angular.module('starter.controllers', [])
   ];
 
   $scope.tab = "todo";
+  $scope.exercicio = {};
 
   $scope.changeTab = function(tab){
     $scope.tab = tab;
   }
 
+  $scope.cadastrarExercicio = function(){
+    if(!$scope.exercicio.nome || !$scope.exercicio.tipo){
+      $ionicPopup.alert({
+        title: 'Error',
+        content: 'Todos os campos precisam ser preenchidos'
+      }).then(function(res) {
+        console.log('Test Alert Box');
+      });
+    }else{
+      $scope.exercises.push({title: $scope.exercicio.tipo, isChecked: false});
+      $state.go("app.exercises");
+    }
+  };
 
   $scope.move = function(index){
     console.log($scope.exercises[index]);
