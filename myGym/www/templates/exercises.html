@@ -1,0 +1,35 @@
+<ion-view view-title="Exercícios">
+  <ion-nav-buttons side="right">
+    <button class="button">
+      <i class="ion-plus"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="e in filtered = (exercises | sortWithTab:tab)">
+        <ion-checkbox ng-model="e.isChecked" ng-change="move($index)">{{e.title}}</ion-checkbox>
+      </ion-item>
+
+    </ion-list>
+    <div style="text-align:center; margin-top: 50px;" ng-show="filtered.length === 0" ng-if="tab == 'done'">
+      Você não possui exercícios concluidos
+    </div>
+    <div style="text-align:center; margin-top: 50px;" ng-show="filtered.length === 0" ng-if="tab == 'todo'">
+      Você não possui exercícios a fazer :)
+    </div>
+  </ion-content>
+</ion-view>
+
+
+<ion-tabs class="tabs-positive tabs-icon-top">
+
+  <ion-tab title="TODO" ng-click="changeTab('todo')" icon-on="ion-clock" icon-off="ion-clock">
+    <!-- Tab 1 content -->
+  </ion-tab>
+
+  <ion-tab title="DONE" ng-click="changeTab('done')" icon-on="ion-checkmark" icon-off="ion-checkmark">
+    <!-- Tab 2 content -->
+  </ion-tab>
+
+</ion-tabs>
+
