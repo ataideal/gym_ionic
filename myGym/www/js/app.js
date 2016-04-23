@@ -62,6 +62,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+  .state('app.help', {
+      url: '/help',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/help.html'
+        }
+      }
+    })
+
+  .state('app.imc', {
+      url: '/imc',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/imc.html',
+          controller: 'IMCCtrl'
+        }
+      }
+    })
+
   .state('app.exercises', {
     url: '/exercises',
     views: {

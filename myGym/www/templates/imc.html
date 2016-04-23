@@ -1,0 +1,81 @@
+<ion-view title="IMC">
+	<ion-content>
+		<form ng-submit="calcularIMC()">
+			<label class="item item-input item-stacked-label">
+			    <span class="input-label">Seu peso (kg)</span>
+			    <input type="number" ng-model="imc.peso" placeholder="Ex.: 80">
+		  	</label>
+			<label class="item item-input item-stacked-label">
+			    <span class="input-label">Sua altura (cm)</span>
+			    <input type="number" ng-model="imc.altura" placeholder="Ex.: 150">
+		  	</label>
+		  	<div class="padding">
+		  		<button class="button button-block button-positive" type="submit">Calcular</button>
+		  	</div>
+		</form>
+		<div ng-show="valor > 0">
+			<h3 class="padding">Seu IMC: </h3>
+			<p class="imc">{{valor}}</p>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						Abaixo de 18,5
+					</div>
+				</div>
+				<div class="col">
+					Você está abaixo do peso ideal
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						Entre 18,5 e 24,9
+					</div>
+				</div>
+				<div class="col">
+					Parabéns &mdash; você está em seu peso normal!
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						Entre 25,0 e 29,9
+					</div>
+				</div>
+				<div class="col">
+					Você está acima de seu peso (sobrepeso)
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						Entre 30,0 e 34,9
+					</div>
+				</div>
+				<div class="col">
+					Obesidade grau I
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						Entre 35,0 e 39,9
+					</div>
+				</div>
+				<div class="col">
+					Obesidade grau II
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="col-borda">
+						40,0 e acima
+					</div>
+				</div>
+				<div class="col">
+					Obesidade grau III
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

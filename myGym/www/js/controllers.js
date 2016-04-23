@@ -45,6 +45,23 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('IMCCtrl', function($scope, $ionicPopup){
+  
+  $scope.valor = 0;
+  $scope.imc = {};
+  $scope.calcularIMC = function(){
+      if($scope.imc.altura && $scope.imc.peso){
+        $scope.valor = (parseInt($scope.imc.peso)/((parseInt($scope.imc.altura)/100) * (parseInt($scope.imc.altura)/100))).toFixed(1);
+      }else{
+        $ionicPopup.alert({
+          title: 'Error',
+          content: 'Todos os campos precisam ser preenchidos'
+        }).then(function(res) {
+        });
+      }
+  };
+})
+
 .controller('ExercisesCtrl', function($scope, $ionicPopup, $state) {
   $scope.exercises = [
     { title: 'Exercicio 1', id: 1, isChecked: false },
@@ -68,7 +85,6 @@ angular.module('starter.controllers', [])
         title: 'Error',
         content: 'Todos os campos precisam ser preenchidos'
       }).then(function(res) {
-        console.log('Test Alert Box');
       });
     }else{
       $scope.exercises.push({title: $scope.exercicio.tipo, isChecked: false});
