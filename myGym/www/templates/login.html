@@ -3,21 +3,29 @@
 
     <h4 style="font-family: sans-serif; font-style: italic bold; text-align: center" class="gray"> MyGYM </h4>
 
-    <form ng-submit="doLogin()">
+    <form name="form" ng-submit="login()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Usuário</span>
-          <input type="text" ng-model="loginData.username">
+          <span class="input-label">E-mail</span>
+          <input name="input" type="email" ng-model="loginData.email">
         </label>
+        <div role="alert">
+          <span class="error" ng-show="form.input.$error.required">
+            Campo requerido!</span>
+          <span class="error" ng-show="form.input.$error.email">
+            Email inválido!</span>
+        </div>
         <label class="item item-input">
           <span class="input-label">Senha</span>
           <input type="password" ng-model="loginData.password">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Entrar</button>
-          <button class="button button-block button-positive" type="button" ng-click="novo()">Cadastrar</button>
         </label>
       </div>
     </form>
+    <div class="list padding">
+      <button class="button button-block" type="button" ng-click="novo()">Cadastrar</button>
+    </div>
   </ion-content>
 </ion-view>

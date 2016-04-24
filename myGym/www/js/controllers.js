@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $state, $rootScope) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -19,33 +19,113 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
   $scope.novo = function(){
-    $state.go("app.cadastro_usuario");
+    $state.go('cadastro');
   };
 
-  // Open the login modal
+  $scope.createAccount = function(){
+    var ref = new Firebase("https://blinding-inferno-9640.firebaseio.com/");
+
+    if(!$scope.loginData.email && !$scope.loginData.password){
+      $ionicPopup.alert({
+        title: 'Error',
+        content: 'Todos os campos precisam ser preenchidos'
+      }).then(function(res) {
+      });
+      return ;
+    }
+
+    ref.createUser({
+      email: $scope.loginData.email,
+      password: $scope.loginData.password
+    }, function(error, userData){
+      if(error){
+          var msg; 
+          switch (error.code) {
+            case "INVALID_EMAIL":
+              msg = "Email inválido";
+              break;
+            case "INVALID_PASSWORD":
+              msg = "A senha inserida é inválida";
+              break;
+            case "INVALID_USER":
+              msg ="Usuário inexistente.";
+              break;
+            default:
+              msg = error;
+         }
+
+        $ionicPopup.alert({
+          title: 'Error',
+          content: msg
+        }).then(function(res) {
+        });
+      }else{
+        $ionicPopup.alert({
+          title: 'Sucesso',
+          content: 'Conta criada com sucesso!'
+        }).then(function(res) {
+          $state.go("login");
+        });
+      }
+    });
+  };
+
   $scope.login = function() {
-    $scope.modal.show();
+    var ref = new Firebase("https://blinding-inferno-9640.firebaseio.com/");
+
+    if(!$scope.loginData.email && !$scope.loginData.password){
+      $ionicPopup.alert({
+        title: 'Error',
+        content: 'Todos os campos precisam ser preenchidos'
+      }).then(function(res) {
+      });
+      return ;
+    }
+
+    ref.authWithPassword({
+      email: $scope.loginData.email,
+      password: $scope.loginData.password
+    }, function(error, userData){
+      if(error){
+          var msg; 
+          switch (error.code) {
+            case "INVALID_EMAIL":
+              msg = "Email inválido";
+              break;
+            case "INVALID_PASSWORD":
+              msg = "A senha inserida é inválida";
+              break;
+            case "INVALID_USER":
+              msg ="Usuário inexistente.";
+              break;
+            default:
+              msg = error;
+         }
+
+        $ionicPopup.alert({
+          title: 'Error',
+          content: msg
+        }).then(function(res) {
+        });
+      }else{
+        $rootScope.user = userData;
+        $state.go("app.exercises");
+      }
+    });
+
+
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $state.go("app.exercises");
-    }, 1000);
+  $scope.logout = function(){
+    var ref = new Firebase("https://blinding-inferno-9640.firebaseio.com/");
+    ref.unauth();
+    $state.go("login");
   };
+
 })
 
-.controller('IMCCtrl', function($scope, $ionicPopup){
+.controller('IMCCtrl', function($scope, $ionicPopup, $rootScope){
   
   $scope.valor = 0;
   $scope.imc = {};
@@ -62,7 +142,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ExercisesCtrl', function($scope, $ionicPopup, $state) {
+.controller('ExercisesCtrl', function($scope, $ionicPopup, $state, $rootScope) {
   $scope.exercises = [
     { title: 'Exercicio 1', id: 1, isChecked: false },
     { title: 'Exercicio 2', id: 2, isChecked: false },
@@ -132,6 +212,3 @@ angular.module('starter.controllers', [])
     }
   }
 })
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});

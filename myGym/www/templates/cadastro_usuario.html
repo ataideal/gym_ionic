@@ -1,7 +1,30 @@
-<ion-view>
+<ion-view title = "Cadastro">
+ 	<ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
 
-	<ion-content>
-  
-	</ion-content>
-
+	    <form name="form" ng-submit="createAccount()">
+	      <div class="list">
+	        <label class="item item-input">
+	          <span class="input-label">E-mail</span>
+	          <input type="email" name="input" ng-model="loginData.email">
+	        </label>
+	        <div role="alert">
+		      <span class="error" ng-show="form.input.$error.required">
+		        Campo requerido!</span>
+		      <span class="error" ng-show="form.input.$error.email">
+		        Email inválido!</span>
+		    </div>
+	        <label class="item item-input">
+	          <span class="input-label">Senha</span>
+	          <input type="password" ng-model="loginData.password">
+	        </label>
+	        <label class="item">
+	          <button class="button button-block button-positive" type="submit">Cadastrar</button>
+	        </label>
+	      </div>
+	    </form>
+    </ion-content>
 </ion-view>

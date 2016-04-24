@@ -37,6 +37,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
+  .state('cadastro', {
+    url: '/new',
+    templateUrl: 'templates/cadastro_usuario.html',
+    controller: 'AppCtrl'
+  })
+
   .state('app', {
     url: '/app',
     abstract: true,
@@ -96,16 +102,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
           templateUrl: 'templates/novo_exercicio.html',
-          controller: 'ExercisesCtrl'
-      }
-    }
-  })
-
-  .state('app.casdastro_usuario', {
-    url: '/user/new',
-    views: {
-      'menuContent': {
-          templateUrl: 'templates/casdastro_usuario.html',
           controller: 'ExercisesCtrl'
       }
     }

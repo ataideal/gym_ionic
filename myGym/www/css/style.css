@@ -5,6 +5,11 @@
 	color: red;
 }
 
+.error{
+	color: #D8000C;
+	padding: 15px 10px 15px 50px;
+}
+
 .sobre-centro {
 	margin-left: auto; margin-right: auto; display: block;
 }
