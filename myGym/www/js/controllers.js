@@ -175,6 +175,8 @@ angular.module('starter.controllers', [])
   $scope.move = function(index){
     console.log($scope.exercises[index]);
   }
+
+  
 })
 
 .filter('sortWithTab', function(){

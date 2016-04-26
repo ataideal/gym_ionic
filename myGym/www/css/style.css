@@ -29,3 +29,18 @@
 	font-style: bold italic;
 	text-align: center;
 }
+
+.checkbox input, .checkbox-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+.glyphicon
+{
+    font-size: 12px;
+}
