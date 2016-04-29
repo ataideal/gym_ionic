@@ -1,6 +1,6 @@
 <ion-view view-title="Novo Exercício">
   <ion-content>
-   <form ng-submit="cadastrarExercicio()">
+  <form ng-submit="cadastrarExercicio()">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Nome</span>
@@ -43,37 +43,38 @@
                   <ion-checkbox ng-model="exercicio.day.sunday">Domingo</ion-checkbox>
               </div>
         </div>
-
-        <div>Repeticoes
-          <div class="container">
-            <div class="row">
-                  <div class="control-group" id="fields">
-                      <label class="control-label" for="field1">Nice Multiple Form Fields</label>
-                      <div class="controls"> 
-                          <form role="form" autocomplete="off">
-                              <div class="entry input-group col-xs-3">
-                                  <input class="form-control" name="fields[]" type="text" placeholder="Type something" />
-                                <span class="input-group-btn">
-                                      <button class="btn btn-success btn-add" type="button">
-                                          <span class="glyphicon glyphicon-plus"></span>
-                                      </button>
-                                  </span>
-                              </div>
-                          </form>
-                      <br>
-                      <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
-                      </div>
-                  </div>
-            </div>
+      </div>
+    </form>
+    <div class="list">
+        <form role="form"  ng-submit="addTodo(todo)">
+          <div class="item item-input-inset">
+            Repetições 
+            <label class="item-input-wrapper"> 
+              <input type="text" ng-model="todo">
+            </label>
+            <button class="button button-small button-positive" type="submit" value="add" ng-disabled="!todo">
+              Adicionar
+            </button>
           </div>
-        </div>
+        </form>
+    </div>
 
+    <div class="list" ng-repeat="todo in todos">
+      <div class="item item-button-right">
+        {{todo}}
+        <button class="button button-positive" ng-click="removeTodo($index)">
+          <i class="icon ion-minus-circled"></i>
+        </button>
+      </div>
+    </div>
+
+
+    <form ng-submit="cadastrarExercicio()">
+      <div class="list">     
         <label class="item">
           <button class="button button-block button-positive" type="submit">Salvar</button>
         </label>
       </div>
-     
-
     </form>
   </ion-content>
 </ion-view>

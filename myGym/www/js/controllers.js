@@ -172,6 +172,14 @@ angular.module('starter.controllers', [])
     }
   };
 
+  $scope.todos = [];
+  $scope.addTodo = function(todo){
+        $scope.todos.push(todo);
+    };
+  $scope.removeTodo = function (index) {
+      $scope.todos.splice(index, 1);
+    };
+
   $scope.move = function(index){
     console.log($scope.exercises[index]);
   }
